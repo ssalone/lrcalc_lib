@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////////////////////
-version = "version lrcalc.lib 0.91 Dec_2015 ";      //$Id:$
+version = "version lrcalc.lib 0.911 Jul_2018 ";      //$Id:$
 category = "Littlewood-Richardson coefficients";
 info="
 LIBRARY:  lrcalc.lib    An interface to the Littlewood-Richardson Calculator by Anders Buch
 
-AUTHOR:  Oleksandr Iena,      oleksandr.iena@uni.lu,  yena@mathematik.uni-kl.de
+AUTHOR:  Oleksandr Iena,      o.g.yena@gmail.com
 
 OVERVIEW:
   An interface to the documented functions of the Littlewood-Richardson Calculator
@@ -25,7 +25,7 @@ PROCEDURES:
                                c^z_{x,y} is non-zero together with that coefficient
   LRcoprod(z)                  pairs of partitions x and y for which the Littlewood-Richardson
                                coefficient c^z_{x,y} is non-zero together with that coefficient
-  LRschubmult(x, y)            expantion of a product of two Schubert polynomials
+  LRschubmult(x, y)            expansion of a product of two Schubert polynomials
                                in the basis of Schubert polynomials
 ";
 //----------------------------------------------------------
@@ -365,7 +365,7 @@ example
 proc LRschubmult(list I, list J)
 "USAGE:   LRschubmult(x, y);  x, y lists of integers
 RETURN:   list of lists
-PURPOSE:  computes the expantion of a product
+PURPOSE:  computes the expansion of a product
           of two Schubert polynomials in the basis of Schubert polynomials
 EXAMPLE:  example LRschubmult; shows an example
 NOTE:
@@ -415,7 +415,7 @@ NOTE:
 example
 {
   "EXAMPLE:"; echo = 2;
-  // Compute the expantion of a square of the Schubert polynomial
+  // Compute the expansion of a square of the Schubert polynomial
   // corresponding to  (1 3 2) in the basis of Schubert polynomials
   list x = 1, 3, 2;
   LRschubmult(x, x);
