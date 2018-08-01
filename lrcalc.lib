@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////
-version = "version lrcalc.lib 0.9 Dec_2015 ";      //$Id:$
+version = "version lrcalc.lib 0.91 Dec_2015 ";      //$Id:$
 category = "Littlewood-Richardson coefficients";
 info="
 LIBRARY:  lrcalc.lib    An interface to the Littlewood-Richardson Calculator by Anders Buch
@@ -154,15 +154,18 @@ NOTE:
     s=s+" "+string(J[i]);
   }
   // execute the string in shell and return the output string back to Singular
-  s=read("|: " +s+"| xargs");
-  list rez;
+  link L="|: "+s+" && echo end";
+  list rez; // the result will be computed here
   list T;
-  i=1;
   int next;
-  // transform the output string from lrcalc to the list
-  sz=size(s);
-  while(i<=sz)
+  while(1)
   {
+    s=read(L);
+    if(s=="end")
+    {
+      break;
+    }
+    i=1;
     next=find(s," ",i);
     if(next ==0){break;}
     T=list(string2int(s[i,next-i]));
@@ -170,10 +173,10 @@ NOTE:
     next=find(s, "(", i);
     i=next+1;
     next=find(s, ")", i);
-    T= T+list( string2list(s[i,next-i])  );
+    T= T+list( string2list(s[i,next-i]) );
     rez=rez+ list(T);
-    i=next+2;
   }
+  close(L);
   return( rez ); // return the result
 }
 example
@@ -255,15 +258,18 @@ NOTE:
     s=s+" "+string(J[i]);
   }
   // execute the string in shell and return the output string back to Singular
-  s=read("|: " +s+"| xargs");
+  link L="|: "+s+" && echo end";
   list rez; // the result will be computed here
   list T;
-  i=1;
   int next;
-  // transform the output string from lrcalc to a list
-  sz=size(s);
-  while(i<=sz)
+  while(1)
   {
+    s=read(L);
+    if(s=="end")
+    {
+      break;
+    }
+    i=1;
     next=find(s," ",i);
     if(next ==0){break;}
     T=list(string2int(s[i,next-i]));
@@ -273,8 +279,8 @@ NOTE:
     next=find(s, ")", i);
     T= T+list( string2list(s[i,next-i]) );
     rez=rez+ list(T);
-    i=next+2;
   }
+  close(L);
   return( rez ); // return the result
 }
 example
@@ -314,16 +320,19 @@ NOTE:
   {
     s=s+" "+string(I[i]);
   }
-  // execute the string in shell and return the output string back to Singular
-   s=read("|: " +s+"| xargs");
-  list rez;
+   // execute the string in shell and return the output string back to Singular
+  link L="|: "+s+" && echo end";
+  list rez; // the result will be computed here
   list T;
-  i=1;
   int next;
-  // transform the output string from lrcalc to a list
-  sz=size(s);
-  while(i<=sz)
+  while(1)
   {
+    s=read(L);
+    if(s=="end")
+    {
+      break;
+    }
+    i=1;
     next=find(s," ",i);
     if(next ==0){break;}
     T=list(string2int(s[i,next-i]));
@@ -338,9 +347,9 @@ NOTE:
     next=find(s, ")", i);
     T= T+list( string2list(s[i,next-i]) );
     rez=rez+ list(T);
-    i=next+2;
   }
-  return( rez );
+  close(L);
+  return( rez ); // return the result
 }
 example
 {
@@ -378,15 +387,18 @@ NOTE:
     s=s+" "+string(J[i]);
   }
   // execute the string in shell and return the output string back to Singular
-  s=read("|: " +s+"| xargs");
-  list rez;
+  link L="|: "+s+" && echo end";
+  list rez; // the result will be computed here
   list T;
-  i=1;
   int next;
-  // transform the output string from lrcalc to a list
-  sz=size(s);
-  while(i<=sz)
+  while(1)
   {
+    s=read(L);
+    if(s=="end")
+    {
+      break;
+    }
+    i=1;
     next=find(s," ",i);
     if(next ==0){break;}
     T=list(string2int(s[i,next-i]));
@@ -396,8 +408,8 @@ NOTE:
     next=find(s, ")", i);
     T= T+list( string2list(s[i,next-i]) );
     rez=rez+ list(T);
-    i=next+2;
   }
+  close(L);
   return( rez ); // return the result
 }
 example
